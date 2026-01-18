@@ -14,12 +14,10 @@
 #include <unistd.h>
 #include "libft.h"
 
-
-
 void	handle_signal(int signal)
 {
 	static char	current_char;
-	static int				bit;
+	static int	bit;
 
 	current_char = current_char | (signal == SIGUSR1);
 	bit++;

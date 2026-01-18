@@ -18,7 +18,7 @@
 void	send_signal(int pid, char character)
 {
 	char	current;
-	int				i;
+	int		i;
 
 	i = 8;
 	current = character;
