@@ -14,9 +14,11 @@
 #include <unistd.h>
 #include "libft.h"
 
+
+
 void	handle_signal(int signal)
 {
-	static unsigned char	current_char;
+	static char	current_char;
 	static int				bit;
 
 	current_char = current_char | (signal == SIGUSR1);

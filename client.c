@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void	send_signal(int pid, unsigned char character)
+void	send_signal(int pid, char character)
 {
-	unsigned char	current;
+	char	current;
 	int				i;
 
 	i = 8;
@@ -30,7 +30,7 @@ void	send_signal(int pid, unsigned char character)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(500);
+		usleep(700);
 	}
 }
 
