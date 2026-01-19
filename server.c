@@ -14,12 +14,35 @@
 #include <unistd.h>
 #include "libft.h"
 
+static void	process_char(char **message, char *current_char)
+{
+	char	*temp;
+
+	if (*current_char == '\0')
+	{
+		ft_printf("%s\n", *message);
+		free(*message);
+		*message = NULL;
+	}
+	else
+	{
+		temp = *message;
+		*message = ft_strjoin(*message, current_char);
+		if (!*message)
+		{
+			free(temp);
+			exit(1);
+		}
+		free(temp);
+	}
+	*current_char = 0;
+}
+
 static void	handle_signal(int signal)
 {
 	static char	*message;
 	static char	current_char;
 	static int	bit;
-	char		*temp;
 
 	if (!message)
 	{
@@ -31,19 +54,7 @@ static void	handle_signal(int signal)
 	bit++;
 	if (bit == 8)
 	{
-		if (current_char == '\0')
-		{
-			ft_printf("%s\n", message);
-			free(message);
-			message = NULL;
-		}
-		else
-		{
-			temp = message;
-			message = ft_strjoin(message, &current_char);
-			free(temp);
-		}
-		current_char = 0;
+		process_char(&message, &current_char);
 		bit = 0;
 	}
 	else
