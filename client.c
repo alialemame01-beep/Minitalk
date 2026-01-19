@@ -31,7 +31,7 @@ static void	send_signal(int pid, char character)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(700);
+		usleep(800);
 	}
 }
 

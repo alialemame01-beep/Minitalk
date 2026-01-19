@@ -16,17 +16,33 @@
 
 static void	handle_signal(int signal)
 {
+	static char	*message;
 	static char	current_char;
 	static int	bit;
+	char		*temp;
 
+	if (!message)
+	{
+		message = ft_strdup("");
+		if (!message)
+			exit(1);
+	}
 	current_char = current_char | (signal == SIGUSR1);
 	bit++;
 	if (bit == 8)
 	{
 		if (current_char == '\0')
-			ft_printf("\n");
+		{
+			ft_printf("%s\n", message);
+			free(message);
+			message = NULL;
+		}
 		else
-			ft_printf("%c", current_char);
+		{
+			temp = message;
+			message = ft_strjoin(message, &current_char);
+			free(temp);
+		}
 		current_char = 0;
 		bit = 0;
 	}
