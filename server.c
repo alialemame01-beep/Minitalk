@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "libft.h"
 
-void	handle_signal(int signal)
+static void	handle_signal(int signal)
 {
 	static char	current_char;
 	static int	bit;
